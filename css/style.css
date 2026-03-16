@@ -162,12 +162,7 @@ body::before {
     height: 100%;
     object-fit: cover;
     display: block;
-    
-    /* 1. Set the 'anchor' point to the right side where your face is */
     transform-origin: 58% 40%; 
-    
-    /* 2. Zoom in from that anchor point */
-    /* Increase this number (e.g., 2.5) to zoom in closer to your face */
     transform: scale(2.2); 
 }
 
