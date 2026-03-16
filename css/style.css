@@ -214,6 +214,144 @@ body::before {
 
 
 /* ==========================================
+   INDEX PAGE — EXPERIENCE
+   ========================================== */
+
+.experience-section {
+    background: var(--earth-deep);
+}
+
+.experience-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.experience-item {
+    padding: 36px 0;
+    border-bottom: 1px solid rgba(138, 115, 85, 0.15);
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+}
+
+.experience-item:first-child {
+    border-top: 1px solid rgba(138, 115, 85, 0.15);
+}
+
+.experience-link {
+    display: block;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.experience-link:hover {
+    padding-left: 20px;
+}
+
+.experience-link:hover .experience-role {
+    color: var(--white-pure);
+}
+
+.experience-link:hover .experience-arrow {
+    transform: translateX(6px);
+    opacity: 1;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 20px;
+}
+
+.experience-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    color: var(--earth-light);
+    transition: color 0.3s ease;
+    margin-bottom: 4px;
+}
+
+.experience-company {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--earth-sage);
+}
+
+.experience-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+}
+
+.experience-date {
+    font-size: 0.8rem;
+    color: var(--earth-warm);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.experience-location {
+    font-size: 0.75rem;
+    color: var(--earth-sage);
+    letter-spacing: 0.5px;
+}
+
+.experience-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-details li {
+    color: var(--earth-sand);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 6px 0 6px 18px;
+    position: relative;
+}
+
+.experience-details li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--earth-warm);
+    opacity: 0.5;
+}
+
+.experience-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--earth-warm);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 600px) {
+    .experience-header {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .experience-meta {
+        align-items: flex-start;
+    }
+}
+
+
+/* ==========================================
    INDEX PAGE — PROJECTS
    ========================================== */
 
