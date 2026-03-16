@@ -4,59 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nicholas Valencia | Technical Program Manager</title>
-    <style>
-        :root { --bg: #ffffff; --text: #111; --gray: #666; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        header { margin-bottom: 50px; }
-        h1 { font-size: 2.5rem; margin-bottom: 0; }
-        .sub { color: var(--gray); font-size: 1.1rem; }
-        .contact { margin-top: 10px; font-size: 0.9rem; }
-        .contact a { color: var(--text); margin-right: 15px; text-decoration: none; border-bottom: 1px solid #ddd; }
-        section { margin-bottom: 60px; }
-        h2 { font-size: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .project-card { margin-bottom: 30px; }
-        .project-card h3 a { color: var(--text); text-decoration: none; }
-        .project-card h3 a:hover { text-decoration: underline; }
-        .project-tag { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
-        p { margin: 10px 0; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Nicholas Valencia</h1>
-        <div class="sub">Software Engineering at SJSU | Technical Program Manager</div>
-        <div class="contact">
+
+    <section class="hero">
+        <div class="hero-label">Software Engineering · Program Management</div>
+        <h1>Nicholas<br>Valencia</h1>
+        <div class="profile-container">
+            <img src="\images\Nick Valencia Headshot.JPG" alt="Nicholas Valencia" class="headshot">
+        </div>
+        <p class="hero-desc">Software Engineering student at San José State University Graduating Fall 26' and Technical Program Management Intern at Miru Labs</p>
+        <div class="contact-links">
             <a href="mailto:NickDValen@gmail.com">Email</a>
-            <a href="https://linkedin.com/in/nickdvalen">LinkedIn</a>
-            <a href="https://github.com/GreenXDShadow">GitHub</a>
+            <a href="https://linkedin.com/in/nickdvalen" target="_blank">LinkedIn</a>
+            <a href="https://github.com/GreenXDShadow" target="_blank">GitHub</a>
         </div>
-    </header>
-
-    <section id="about">
-        <h2>About</h2>
-        <p>Currently a Technical Program Management Intern at Miru Labs and a Software Engineering student at San Jose State University. I focus on bridging the gap between complex hardware/software systems and strategic execution.</p>
+    
     </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        
-        <div class="project-card">
-            <span class="project-tag">Hardware / R&D</span>
-            <h3><a href="cobra.html">1999 Mustang Cobra Restoration & Track Build</a></h3>
-            <p>A multi-year restoration and performance optimization project focused on structural rigidity, drivetrain kinematics, and thermal management.</p>
-        </div>
+    <section class="section about-section">
+        <div class="section-label reveal">About</div>
+        <p class="about-text reveal">Program Management focused Software Engineer with a background in Full Stack development. Proficient in multiple programming languages including Java, Python, and JavaScript; experienced in project management and skilled in on time feature delivery. Results-driven and detail-oriented, with profeciency in Agile, Jira, Docker, and Database Management</p>
+    </section>
 
-        <div class="project-card">
-            <span class="project-tag">Full Stack / Infrastructure</span>
-            <h3><a href="https://github.com/venajustin/jsmge">JSMGE: Multiplayer Game Engine</a></h3>
-            <p>Architected a containerized microservices platform using Docker Compose and Nginx to dynamically provision isolated game server environments.</p>
-        </div>
-
-        <div class="project-card">
-            <span class="project-tag">Program Management</span>
-            <h3><a href="#">City Year Bay Area: Strategic Proposal</a></h3>
-            <p>Led a cross-functional team to design a 3-year roadmap and ecosystem projected to achieve a 75% post-service job placement rate.</p>
+    <section class="section">
+        <div class="section-label reveal">Selected Projects</div>
+        <div class="projects-grid">
+            <a href="cobra.html" class="project-item reveal">
+                <div>
+                    <div class="project-tag">Hardware / R&D</div>
+                    <div class="project-title">1999 Mustang Cobra Restoration & Track Build</div>
+                    <div class="project-desc">A multi-year restoration and performance optimization project focused on structural rigidity, drivetrain kinematics, and thermal management.</div>
+                </div>
+                <div class="project-arrow">→</div>
+            </a>
+            <a href="https://github.com/venajustin/jsmge" class="project-item reveal" target="_blank">
+                <div>
+                    <div class="project-tag">Full Stack / Infrastructure</div>
+                    <div class="project-title">JSMGE: Multiplayer Game Engine</div>
+                    <div class="project-desc">Architected a containerized microservices platform using Docker Compose and Nginx to dynamically provision isolated game server environments.</div>
+                </div>
+                <div class="project-arrow">→</div>
+            </a>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7404233388297281536/" class="project-item reveal">
+                <div>
+                    <div class="project-tag">Program Management</div>
+                    <div class="project-title">City Year Bay Area: Strategic Proposal</div>
+                    <div class="project-desc">Led a cross-functional team to design a 3-year roadmap and ecosystem projected to achieve a 75% post-service job placement rate.</div>
+                </div>
+                <div class="project-arrow">→</div>
+            </a>
         </div>
     </section>
+
+    <footer class="footer">
+        © 2026 Nicholas Valencia
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

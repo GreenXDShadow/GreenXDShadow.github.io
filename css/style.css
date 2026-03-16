@@ -1,0 +1,500 @@
+/* ==========================================
+   SHARED STYLES
+   ========================================== */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --earth-dark: #1a1a14;
+    --earth-deep: #2c2c22;
+    --earth-olive: #3d3f2e;
+    --earth-sage: #5a6349;
+    --earth-warm: #8b7355;
+    --earth-sand: #b8a088;
+    --earth-light: #d4c4af;
+    --white: #f5f0eb;
+    --white-pure: #ffffff;
+    --accent: #a68b6b;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    background: var(--earth-dark);
+    color: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Scroll animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+.footer {
+    padding: 40px clamp(30px, 8vw, 120px);
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--earth-warm);
+    letter-spacing: 1px;
+}
+
+
+
+/* ==========================================
+   INDEX PAGE — HERO
+   ========================================== */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px clamp(30px, 8vw, 120px) 40px;
+    min-height: auto;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--earth-warm), transparent);
+}
+
+.hero-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth-sand);
+    /* margin-bottom: 24px; */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--white-pure);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.hero-desc {
+    max-width: 560px;
+    font-size: 1.05rem;
+    color: var(--earth-light);
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+.contact-links {
+    display: flex;
+    gap: 28px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.8s;
+}
+
+.contact-links a {
+    color: var(--earth-sand);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.contact-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.contact-links a:hover { color: var(--white-pure); }
+.contact-links a:hover::after { width: 100%; }
+
+.headshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    
+    /* 1. Set the 'anchor' point to the right side where your face is */
+    transform-origin: 58% 40%; 
+    
+    /* 2. Zoom in from that anchor point */
+    /* Increase this number (e.g., 2.5) to zoom in closer to your face */
+    transform: scale(2.2); 
+}
+
+.profile-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden; /* Essential: This clips the 'zoomed' image into a circle */
+    border: 2px solid var(--earth-sage);
+    margin-bottom: 24px;
+    background: var(--earth-deep);
+}
+
+
+/* ==========================================
+   INDEX PAGE — SECTIONS
+   ========================================== */
+
+.section {
+    padding: 100px clamp(30px, 8vw, 120px);
+    position: relative;
+}
+
+.section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth-warm);
+    margin-bottom: 48px;
+}
+
+.about-section {
+    background: var(--earth-deep);
+}
+
+.about-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.5;
+    color: var(--earth-light);
+    max-width: 700px;
+}
+
+
+/* ==========================================
+   INDEX PAGE — PROJECTS
+   ========================================== */
+
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(138, 115, 85, 0.15);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.project-item:first-child {
+    border-top: 1px solid rgba(138, 115, 85, 0.15);
+}
+
+.project-item:hover {
+    padding-left: 20px;
+}
+
+.project-item:hover .project-title {
+    color: var(--white-pure);
+}
+
+.project-item:hover .project-arrow {
+    transform: translateX(6px);
+    opacity: 1;
+}
+
+.project-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--earth-sage);
+    background: rgba(90, 99, 73, 0.2);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    color: var(--earth-light);
+    transition: color 0.3s ease;
+    margin-bottom: 8px;
+}
+
+.project-desc {
+    font-size: 0.92rem;
+    color: var(--earth-sand);
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.project-arrow {
+    font-size: 1.5rem;
+    color: var(--earth-warm);
+    opacity: 0;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+}
+
+
+/* ==========================================
+   COBRA PAGE — BACK NAV
+   ========================================== */
+
+.back-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px clamp(30px, 8vw, 120px);
+    z-index: 100;
+    background: linear-gradient(to bottom, var(--earth-dark), transparent);
+}
+
+.back-nav a {
+    color: var(--earth-sand);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.back-nav a:hover { color: var(--white-pure); }
+
+
+/* ==========================================
+   COBRA PAGE — HERO
+   ========================================== */
+
+.project-hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 clamp(30px, 8vw, 120px) 60px;
+    position: relative;
+}
+
+.project-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--earth-warm), transparent);
+}
+
+.project-hero .tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--earth-sage);
+    background: rgba(90, 99, 73, 0.2);
+    padding: 4px 12px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.project-hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--white-pure);
+    max-width: 700px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.project-hero .intro {
+    font-size: 1.05rem;
+    color: var(--earth-light);
+    max-width: 620px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+
+/* ==========================================
+   COBRA PAGE — CONTENT
+   ========================================== */
+
+.content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px clamp(24px, 6vw, 40px);
+}
+
+.content-block {
+    margin-bottom: 72px;
+}
+
+.content-block h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--white-pure);
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-left: 3px solid var(--earth-warm);
+}
+
+.content-block p {
+    color: var(--earth-light);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.content-block strong {
+    color: var(--white);
+    font-weight: 500;
+}
+
+.content-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.content-block ul li {
+    color: var(--earth-light);
+    font-size: 0.95rem;
+    padding: 10px 0 10px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(138, 115, 85, 0.1);
+}
+
+.content-block ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--earth-warm);
+}
+
+.image-block {
+    margin: 32px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-block img {
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+    background: var(--earth-deep);
+    min-height: 200px;
+}
+
+.image-caption {
+    font-size: 0.8rem;
+    color: var(--earth-warm);
+    text-align: center;
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+}
+
+.status-block {
+    background: var(--earth-deep);
+    border-radius: 6px;
+    padding: 32px;
+    border-left: 3px solid var(--earth-sage);
+    margin-top: 60px;
+}
+
+.status-block h3 {
+    border: none;
+    padding-left: 0;
+    margin-bottom: 16px;
+    color: var(--earth-sand);
+}
+
+.status-block p {
+    color: var(--earth-light);
+    font-size: 0.95rem;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 600px) {
+    .hero { min-height: 90vh; padding: 40px 24px; }
+    .section { padding: 60px 24px; }
+    .contact-links { flex-wrap: wrap; gap: 16px; }
+    .project-item { grid-template-columns: 1fr; gap: 8px; }
+    .project-arrow { display: none; }
+    .project-hero { min-height: 50vh; padding: 0 24px 40px; }
+    .content { padding: 40px 24px; }
+    .back-nav { padding: 16px 24px; }
+}
