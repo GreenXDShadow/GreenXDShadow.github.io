@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | Nicholas Valencia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="back-nav">
+        <a href="index.html">← Back</a>
+    </nav>
+
+    <section class="project-hero photo-hero">
+        <span class="tag">Portfolio</span>
+        <h1>Photography</h1>
+        <p class="intro">Outside of software engineering, I'm a passionate photographer with a focus on automotive photorgaphy, but I like capturing anything eye catching.</p>
+    </section>
+
+    <div class="photo-content">
+        <div class="albums">
+            <div class="album-row">
+                <article class="album" data-album="street">
+                    <button class="album-cover" type="button" aria-expanded="false" aria-controls="grid-street">
+                        <img src="images/street/full/Street-2.jpg" alt="" class="album-cover-img">
+                    </button>
+                    <h2 class="album-name">Street Photography</h2>
+                </article>
+
+                <article class="album" data-album="automotive">
+                    <button class="album-cover" type="button" aria-expanded="false" aria-controls="grid-automotive">
+                        <img src="images/automotive/automotive-21.png" alt="" class="album-cover-img">
+                    </button>
+                    <h2 class="album-name">Automotive</h2>
+                </article>
+
+                <article class="album" data-album="portraiture">
+                    <button class="album-cover" type="button" aria-expanded="false" aria-controls="grid-portraiture">
+                        <img src="images/portraiture/Portrait-4.png" alt="" class="album-cover-img">
+                    </button>
+                    <h2 class="album-name">Portraiture</h2>
+                </article>
+            </div>
+
+            <div class="album-panels">
+                <div class="album-grid" id="grid-street" data-album="street" hidden></div>
+
+                <div class="album-grid" id="grid-automotive" data-album="automotive" hidden></div>
+
+                <div class="album-grid" id="grid-portraiture" data-album="portraiture" hidden></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2026 Nicholas Valencia
+    </footer>
+
+    <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <div class="lightbox-backdrop" data-lightbox-close></div>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous photo">←</button>
+        <div class="lightbox-stage">
+            <img class="lightbox-img" src="" alt="">
+            <p class="lightbox-caption"></p>
+        </div>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next photo">→</button>
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">×</button>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/photography.js"></script>
+</body>
+</html>

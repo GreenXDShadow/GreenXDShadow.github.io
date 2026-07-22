@@ -15,6 +15,8 @@
     --white: #f5f0eb;
     --white-pure: #ffffff;
     --accent: #a68b6b;
+    /* Portraiture lightbox titles: 0 = hidden, 1 = shown */
+    --portraiture-show-titles: 0;
 }
 
 html { scroll-behavior: smooth; }
@@ -618,6 +620,335 @@ body::before {
 
 
 /* ==========================================
+   PHOTOGRAPHY PAGE
+   ========================================== */
+
+.photo-hero {
+    min-height: 40vh;
+    padding-top: 80px;
+}
+
+.photo-content {
+    padding: 60px clamp(30px, 8vw, 120px) 100px;
+}
+
+.albums {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.album-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 90vw;
+    max-width: 90vw;
+    margin-left: calc(50% - 45vw);
+    margin-right: calc(50% - 45vw);
+}
+
+.album {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+.album-cover {
+    width: auto;
+    max-width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: block;
+}
+
+.album-cover:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.album-cover-img {
+    display: block;
+    height: clamp(200px, 32vw, 520px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.album-cover:hover .album-cover-img {
+    opacity: 0.85;
+}
+
+.photo-placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: transparent;
+    border: 1px solid var(--accent);
+    box-sizing: border-box;
+}
+
+.album-cover-placeholder {
+    transition: border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.album-cover:hover .album-cover-placeholder {
+    border-color: var(--earth-sand);
+}
+
+.album.is-open .album-cover-placeholder {
+    border-color: var(--earth-sand);
+}
+
+.album-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--earth-sand);
+    margin-top: 16px;
+    transition: opacity 0.35s ease;
+}
+
+.album.is-open .album-name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.album-panels {
+    position: relative;
+    margin-top: 40px;
+}
+
+.album-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 0.7s ease, opacity 0.4s ease;
+}
+
+.album-grid.is-open {
+    max-height: 8000px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.album-grid .photo-placeholder {
+    flex: 1 1 140px;
+    max-width: 220px;
+    height: clamp(140px, 18vw, 220px);
+    width: auto;
+    aspect-ratio: 1;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.album-grid.is-open .photo-placeholder {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.album-grid.is-open .photo-placeholder:nth-child(1) { transition-delay: 0.05s; }
+.album-grid.is-open .photo-placeholder:nth-child(2) { transition-delay: 0.1s; }
+.album-grid.is-open .photo-placeholder:nth-child(3) { transition-delay: 0.15s; }
+.album-grid.is-open .photo-placeholder:nth-child(4) { transition-delay: 0.2s; }
+.album-grid.is-open .photo-placeholder:nth-child(5) { transition-delay: 0.25s; }
+.album-grid.is-open .photo-placeholder:nth-child(6) { transition-delay: 0.3s; }
+
+.photo-item {
+    display: block;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+    height: 200px;
+    width: auto;
+    flex: 0 0 auto;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.album-grid.is-open .photo-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.album-grid.is-open .photo-item:nth-child(1) { transition-delay: 0.04s; }
+.album-grid.is-open .photo-item:nth-child(2) { transition-delay: 0.08s; }
+.album-grid.is-open .photo-item:nth-child(3) { transition-delay: 0.12s; }
+.album-grid.is-open .photo-item:nth-child(4) { transition-delay: 0.16s; }
+.album-grid.is-open .photo-item:nth-child(5) { transition-delay: 0.2s; }
+.album-grid.is-open .photo-item:nth-child(6) { transition-delay: 0.24s; }
+.album-grid.is-open .photo-item:nth-child(n+7) { transition-delay: 0.28s; }
+
+.photo-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+body:not(.lightbox-open) .photo-item:hover img {
+    filter: brightness(0.65);
+}
+
+.photo-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* ==========================================
+   LIGHTBOX
+   ========================================== */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 64px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 8, 0.82);
+    cursor: pointer;
+}
+
+.lightbox-stage {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.lightbox-img {
+    display: block;
+    max-width: 90vw;
+    max-height: calc(90vh - 48px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transform: scale(0.92);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.35s ease;
+}
+
+.lightbox.is-open .lightbox-img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.lightbox-img.is-swapping {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.lightbox-caption {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--earth-sand);
+    margin-top: 16px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.35s ease 0.1s;
+}
+
+.lightbox.is-open .lightbox-caption {
+    opacity: 1;
+}
+
+.lightbox.is-open[data-album="portraiture"] .lightbox-caption {
+    opacity: var(--portraiture-show-titles);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: none;
+    border: none;
+    color: var(--earth-sand);
+    font-size: 1.75rem;
+    cursor: pointer;
+    padding: 12px 16px;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.lightbox-nav:hover {
+    color: var(--white-pure);
+}
+
+.lightbox-prev { left: 8px; }
+.lightbox-next { right: 8px; }
+
+.lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    z-index: 2;
+    background: none;
+    border: none;
+    color: var(--earth-sand);
+    font-size: 1.75rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.lightbox-close:hover {
+    color: var(--white-pure);
+}
+
+body.lightbox-open {
+    overflow: hidden;
+}
+
+
+/* ==========================================
    RESPONSIVE
    ========================================== */
 
@@ -630,4 +961,37 @@ body::before {
     .project-hero { min-height: 50vh; padding: 0 24px 40px; }
     .content { padding: 40px 24px; }
     .back-nav { padding: 16px 24px; }
+
+    .photo-content { padding: 40px 24px 80px; }
+    .album-row {
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 36px;
+        width: min(90vw, 280px);
+        max-width: min(90vw, 280px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .album-cover {
+        width: 100%;
+    }
+
+    .album-cover-img {
+        height: auto;
+        width: 100%;
+    }
+
+    .lightbox {
+        padding: 48px 40px 24px;
+    }
+
+    .lightbox-nav {
+        font-size: 1.4rem;
+        padding: 8px 10px;
+    }
+
+    .lightbox-prev { left: 0; }
+    .lightbox-next { right: 0; }
 }
